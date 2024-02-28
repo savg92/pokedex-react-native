@@ -25,15 +25,26 @@ const Pokemon = () => {
 					<View>
 						<View>
 							<Text>{data.name[0].toUpperCase() + data.name.slice(1)}</Text>
-							<Text>{data.id}</Text>
+							<Text>Id: {data.id}</Text>
 						</View>
 						<Image
 							source={{ uri: data.img }}
 							style={{ width: 150, height: 150 }}
 						/>
-						<Text>{data.type}</Text>
-						<Text>{data.height}</Text>
-						<Text>{data.weight}</Text>
+						<View>
+							<Text>Type:</Text>
+							{data.type.map((type: any, index: number) => (
+								<Text key={index}>{type.type.name}</Text>
+							))}
+						</View>
+						<View>
+							<Text>Abilities:</Text>
+							{data.avilities.map((avility: any, index: number) => (
+								<Text key={index}>{avility.ability.name}</Text>
+							))}
+						</View>
+						<Text>Weight: {data.weight} pounds</Text>
+            <Text>Height: {data.height} feet</Text>
 					</View>
 				)}
 			</View>

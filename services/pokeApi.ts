@@ -11,7 +11,7 @@ export const getPokemons = async (limit = 151, offset = 0) => {
                 return {
                     id: pokemonResponse.data.id,
                     name: pokemonResponse.data.name,
-                    img: pokemonResponse.data.sprites.other['official-artwork'].front_default,
+                    img: pokemonResponse.data.sprites.front_default,
                     type: pokemonResponse.data.types[0].type.name,
                 };
             })
@@ -36,7 +36,7 @@ export const getPokemon = async (name: string | number | undefined) => {
             id: res.data.id,
             name: res.data.name,
             img: res.data.sprites.other['official-artwork'].front_default,
-            type: res.data.types[0].type.name,
+            type: res.data.types,
             avilities: res.data.abilities,
             height: res.data.height,
             weight: res.data.weight,
