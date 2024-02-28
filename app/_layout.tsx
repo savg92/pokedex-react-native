@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
-function RootLayoutNav() {
+export default function RootLayoutNav() {
 	const queryClient = new QueryClient();
 
 	return (
