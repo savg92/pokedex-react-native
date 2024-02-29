@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, Image, StyleSheet, Text, View } from 'react-native';
 
 import { getPokemons } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
@@ -19,34 +19,37 @@ export default function Component() {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.tittle}>Pokemons</Text>
-			<ScrollView style={styles.main}>
-				{loading && <Text>Loading...</Text>}
-				{error && <Text>Error: {error.message}</Text>}
-				{data &&
-					data.map((pokemon, index) => (
+			{loading && <Text>Loading...</Text>}
+			{error && <Text>Error: {error.message}</Text>}
+			{data && data.length === 0 && <Text>No pokemons</Text>}
+			{data && data.length > 0 && (
+				<FlatList
+					data={data}
+					keyExtractor={(item) => item.id}
+					renderItem={({ item }) => (
 						<Link
-							key={index}
-							href={`/pokemons/${pokemon.name}`}
+							href={`/pokemons/${item.name}`}
 						>
 							<View style={styles.subContainer}>
 								<Image
-									source={{ uri: pokemon.img }}
+									source={{ uri: item.img }}
 									style={{ width: 150, height: 150 }}
 								/>
-                                <View style={styles.subContainer2}>
-								<Text>
-									{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
-								</Text>
-								<Text>Id: {pokemon.id}</Text>
-								<Text>Type: {pokemon.type}</Text>
-                                </View>
+								<View style={styles.subContainer2}>
+									<Text>
+										{item.name[0].toUpperCase() + item.name.slice(1)}
+									</Text>
+									<Text>Id: {item.id}</Text>
+									<Text>Type: {item.type}</Text>
+								</View>
 							</View>
 						</Link>
-					))}
-			</ScrollView>
+					)}
+				/>
+			)}
 
 			<Link href={'/'}>
-				<Text>Go to back</Text>
+				<Button title="Go back" />
 			</Link>
 			<StatusBar style='auto' />
 		</View>

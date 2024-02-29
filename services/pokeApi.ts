@@ -46,7 +46,7 @@ export const getPokemon = async (name: string | number | undefined) => {
             name: 'Not Found',
             img: 'https://via.placeholder.com/150',
             id: 0,
-            type: 'none',
+            type: [],
             avilities: ['none'],
             height: 0,
             weight: 0,
