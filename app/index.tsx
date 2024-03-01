@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function Page() {
   return (
@@ -9,11 +9,11 @@ export default function Page() {
         <Text style={styles.subtitle}>This is the first page of your app.</Text>
 
         <Link href="/home">
-          <Text>Go to home</Text>
+          <Button title="Go to home" />
         </Link>
 
         <Link href="/pokemons">
-          <Text>Go to Pokemons</Text>
+          <Button title="Go to pokemons" />
         </Link>
       </View>
       <View style={styles.footer}>

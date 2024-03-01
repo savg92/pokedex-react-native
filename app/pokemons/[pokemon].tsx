@@ -1,6 +1,6 @@
 import { Link, useGlobalSearchParams } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { getPokemon } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
 
@@ -49,7 +49,7 @@ const Pokemon = () => {
 				)}
 			</View>
 			<Link href='/pokemons'>
-				<Text>Go to back</Text>
+				<Button title='Go back' />
 			</Link>
 		</View>
 	);
