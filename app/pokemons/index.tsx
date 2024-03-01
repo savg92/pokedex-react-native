@@ -1,6 +1,14 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+	Button,
+	FlatList,
+	Image,
+	Pressable,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native';
 
 import { getPokemons } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
@@ -16,6 +24,22 @@ export default function Component() {
 		queryFn: () => getPokemons(100, 0),
 	});
 
+	const PokemonItem = React.memo(({ item }: any) => (
+		<Link href={`/pokemons/${item.name}`}>
+			<View style={styles.subContainer}>
+				<Image
+					source={{ uri: item.img }}
+					style={{ width: 150, height: 150 }}
+				/>
+				<View style={styles.subContainer2}>
+					<Text>{item.name[0].toUpperCase() + item.name.slice(1)}</Text>
+					<Text>Id: {item.id}</Text>
+					<Text>Type: {item.type}</Text>
+				</View>
+			</View>
+		</Link>
+	));
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.tittle}>Pokemons</Text>
@@ -26,31 +50,18 @@ export default function Component() {
 				<FlatList
 					data={data}
 					keyExtractor={(item) => item.id}
-					renderItem={({ item }) => (
-						<Link
-							href={`/pokemons/${item.name}`}
-						>
-							<View style={styles.subContainer}>
-								<Image
-									source={{ uri: item.img }}
-									style={{ width: 150, height: 150 }}
-								/>
-								<View style={styles.subContainer2}>
-									<Text>
-										{item.name[0].toUpperCase() + item.name.slice(1)}
-									</Text>
-									<Text>Id: {item.id}</Text>
-									<Text>Type: {item.type}</Text>
-								</View>
-							</View>
-						</Link>
-					)}
+					renderItem={({ item }) => <PokemonItem item={item} />}
 				/>
 			)}
 
-			<Link href={'/'}>
-				<Button title="Go back" />
-			</Link>
+			<View style={styles.footer}>
+				<Link href='/' asChild>
+					{/* <Button title='Go to back' /> */}
+					<Pressable style={styles.button}>
+						<Text style={styles.buttonText}>Go to back</Text>
+					</Pressable>
+				</Link>
+			</View>
 			<StatusBar style='auto' />
 		</View>
 	);
@@ -71,16 +82,35 @@ const styles = StyleSheet.create({
 	main: {
 		flex: 1,
 	},
-    subContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        gap: 10,
-        alignItems: 'center',
-        width: '95%',
-    },
-    subContainer2: {
-        flex: 1,
-        flexDirection: 'column',
-        gap: 10,
-    }
+	subContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		gap: 10,
+		alignItems: 'center',
+		width: '95%',
+	},
+	subContainer2: {
+		flex: 1,
+		flexDirection: 'column',
+		gap: 10,
+	},
+	footer: {
+		marginTop: 20,
+		padding: 15,
+		borderTopWidth: 1,
+		borderTopColor: '#38434D',
+		width: '100%',
+	},
+	button: {
+		marginTop: 20,
+		padding: 10,
+		borderRadius: 5,
+		backgroundColor: '#183aa0',
+		color: '#fff',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	buttonText: {
+		color: '#fff',
+	},
 });

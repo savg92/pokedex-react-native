@@ -50,10 +50,14 @@ const Pokemon = () => {
 				)}
 			</View>
 
-			{/* <Pressable onPress={() => navigate.goBack()}>
-				<Text>Go back</Text>
-			</Pressable> */}
-			<Button title='Go back' onPress={() => navigate.goBack()} />
+			<Link
+				href='/pokemons'
+				asChild
+			>
+				<Pressable style={styles.button} >
+					<Text style={styles.buttonText}>Go to pokemons</Text>
+				</Pressable>
+			</Link>
 		</View>
 	);
 };
@@ -73,6 +77,16 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 20,
 		fontWeight: 'bold',
+	},
+	button: {
+		marginTop: 20,
+		padding: 10,
+		borderRadius: 5,
+		backgroundColor: '#183aa0',
+		color: '#fff',
+	},
+	buttonText: {
+		color: '#fff',
 	},
 });
 
