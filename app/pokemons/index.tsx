@@ -100,6 +100,8 @@ const styles = StyleSheet.create({
 		borderTopWidth: 1,
 		borderTopColor: '#38434D',
 		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	button: {
 		marginTop: 20,
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		justifyContent: 'center',
 		alignItems: 'center',
+		width: '30%',
 	},
 	buttonText: {
 		color: '#fff',
