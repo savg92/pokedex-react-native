@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { getPokemons } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 	},
     subContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         gap: 10,
         alignItems: 'center',
         width: '95%',

@@ -1,7 +1,14 @@
-import { Link } from "expo-router";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Link, useNavigation } from "expo-router";
+import { Button, Pressable, StyleSheet, Text, View } from "react-native";
+
+type RootStackParamList = {
+	Home: string;
+	Pokemons: string;
+};
+
 
 export default function Page() {
+const { navigate } = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.main}>
@@ -11,7 +18,6 @@ export default function Page() {
         <Link href="/home">
           <Button title="Go to home" />
         </Link>
-
         <Link href="/pokemons">
           <Button title="Go to pokemons" />
         </Link>

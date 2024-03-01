@@ -1,6 +1,6 @@
-import { Link, useGlobalSearchParams } from 'expo-router';
+import { Link, useGlobalSearchParams, useNavigation } from 'expo-router';
 import React from 'react';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { getPokemon } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
 
@@ -14,6 +14,7 @@ const Pokemon = () => {
 		queryKey: ['pokemon', pokemon],
 		queryFn: () => getPokemon(pokemon?.toString()),
 	});
+	const navigate = useNavigation();
 
 	return (
 		<View style={styles.container}>
@@ -44,13 +45,15 @@ const Pokemon = () => {
 							))}
 						</View>
 						<Text>Weight: {data.weight} pounds</Text>
-            <Text>Height: {data.height} feet</Text>
+						<Text>Height: {data.height} feet</Text>
 					</View>
 				)}
 			</View>
-			<Link href='/pokemons'>
-				<Button title='Go back' />
-			</Link>
+
+			{/* <Pressable onPress={() => navigate.goBack()}>
+				<Text>Go back</Text>
+			</Pressable> */}
+			<Button title='Go back' onPress={() => navigate.goBack()} />
 		</View>
 	);
 };
