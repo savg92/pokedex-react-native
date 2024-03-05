@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
 	Button,
 	FlatList,
-	Image,
+	// Image,
 	Pressable,
 	StyleSheet,
 	Text,
@@ -13,6 +13,7 @@ import {
 import { getPokemons } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'expo-router';
+import { Card, Paragraph, Image, H2 } from 'tamagui';
 
 export default function Component() {
 	const {
@@ -26,7 +27,7 @@ export default function Component() {
 
 	const PokemonItem = React.memo(({ item }: any) => (
 		<Link href={`/pokemons/${item.name}`}>
-			<View style={styles.subContainer}>
+			{/* <View style={styles.subContainer}>
 				<Image
 					source={{ uri: item.img }}
 					style={{ width: 150, height: 150 }}
@@ -36,7 +37,23 @@ export default function Component() {
 					<Text>Id: {item.id}</Text>
 					<Text>Type: {item.type}</Text>
 				</View>
-			</View>
+			</View> */}
+			<Card style={{ marginTop: 10 }}>
+				<Card.Header>
+					<H2>{item.name[0].toUpperCase() + item.name.slice(1)}</H2>
+					{/* <Paragraph>Id: {item.id}</Paragraph> */}
+					<Paragraph>Type: {item.type}</Paragraph>
+				</Card.Header>
+				<Card.Footer>
+					<Image
+						source={{ uri: item.img }}
+						width={150}
+						height={150}
+					/>
+				</Card.Footer>
+				{/* any other components */}
+				<Card.Background />
+			</Card>
 		</Link>
 	));
 
@@ -55,7 +72,10 @@ export default function Component() {
 			)}
 
 			<View style={styles.footer}>
-				<Link href='/' asChild>
+				<Link
+					href='/'
+					asChild
+				>
 					{/* <Button title='Go to back' /> */}
 					<Pressable style={styles.button}>
 						<Text style={styles.buttonText}>Go to back</Text>
