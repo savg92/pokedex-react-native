@@ -8,14 +8,9 @@ const config = getDefaultConfig(__dirname, {
 
 	isCSSEnabled: true,
 });
-// add nice web support with optimizing compiler + CSS extraction
+// Expo 49 issue: default metro config needs to include "mjs"
 
-const { withTamagui } = require('@tamagui/metro-plugin');
+// https://github.com/expo/expo/issues/23180
 
-module.exports = withTamagui(config, {
-	components: ['tamagui'],
-
-	config: './tamagui.config.ts',
-
-	outputCSS: './tamagui-web.css',
-});
+config.resolver.sourceExts.push('mjs');
+module.exports = config;
