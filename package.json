@@ -9,6 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@tamagui/babel-plugin": "^1.91.1",
+    "@tamagui/config": "^1.91.1",
+    "@tamagui/core": "^1.91.1",
+    "@tamagui/metro-plugin": "^1.91.1",
     "@tanstack/react-query": "^5.24.1",
     "axios": "^1.6.7",
     "expo": "~50.0.8",

@@ -1,5 +1,6 @@
 import { Link, useNavigation } from 'expo-router';
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Button } from 'tamagui';
 
 type RootStackParamList = {
 	Home: string;
@@ -20,24 +21,29 @@ export default function Page() {
 						asChild
 					>
 						{/* <Button title='Go to home' /> */}
-            <Pressable style={styles.button} >
-              <Text style={styles.buttonText}>Go to home</Text>
-            </Pressable>
+						<Pressable style={styles.button}>
+							<Text style={styles.buttonText}>Go to home</Text>
+						</Pressable>
 					</Link>
 					<Link
 						href='/pokemons'
 						asChild
 					>
 						{/* <Button title='Go to pokemons' /> */}
-            <Pressable style={styles.button} >
-              <Text style={styles.buttonText}>Go to pokemons</Text>
-            </Pressable>
+						<Pressable style={styles.button}>
+							<Text style={styles.buttonText}>Go to pokemons</Text>
+						</Pressable>
 					</Link>
-
 				</View>
 			</View>
 			<View style={styles.footer}>
 				<Text>Footer</Text>
+				<Link
+					href='/pokemons'
+					asChild
+				>
+					<Button>Go to pokemons</Button>
+				</Link>
 			</View>
 		</View>
 	);
