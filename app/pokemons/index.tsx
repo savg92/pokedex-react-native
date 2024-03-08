@@ -13,7 +13,7 @@ import {
 import { getPokemons } from '../../services/pokeApi';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'expo-router';
-import { Card, Paragraph, Image, H2 } from 'tamagui';
+import { Card, Paragraph, Image, H2, YStack } from 'tamagui';
 
 export default function Component() {
 	const {
@@ -38,10 +38,10 @@ export default function Component() {
 					<Text>Type: {item.type}</Text>
 				</View>
 			</View> */}
+			
 			<Card style={{ marginTop: 10 }}>
 				<Card.Header>
 					<H2>{item.name[0].toUpperCase() + item.name.slice(1)}</H2>
-					{/* <Paragraph>Id: {item.id}</Paragraph> */}
 					<Paragraph>Type: {item.type}</Paragraph>
 				</Card.Header>
 				<Card.Footer>
@@ -51,7 +51,6 @@ export default function Component() {
 						height={150}
 					/>
 				</Card.Footer>
-				{/* any other components */}
 				<Card.Background />
 			</Card>
 		</Link>
@@ -67,9 +66,22 @@ export default function Component() {
 				<FlatList
 					data={data}
 					keyExtractor={(item) => item.id}
-					renderItem={({ item }) => <PokemonItem item={item} />}
+					renderItem={({ item }) => (
+						<YStack>
+							<PokemonItem item={item} />
+						</YStack>
+					)}
 				/>
 			)}
+
+			{/* <YStack>
+				{data?.map((item) => (
+					<PokemonItem
+						key={item.id}
+						item={item}
+					/>
+				))}
+			</YStack> */}
 
 			<View style={styles.footer}>
 				<Link
